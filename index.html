@@ -1,22 +1,203 @@
-<html>
-    <head>
-        <title>CSS Page 1</title>
-        <style>
-            body
-            {
-                background-color: green;
-                color: white;
-            }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate This Spot</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="allprogram">
+        <div class="title">
+            <h1>Rate This Spot</h1>
+        </div>
+        <div class="information">
+            <p>"Rate This Spot" is a new social media mobile application designed to simplify the process of rating and sharing favourite hangout spots.<br> Today it can be quite challenging to find a perfect location for relaxation or socializing. <br> This app aims to change that by providing users with an easy way to capture, rate, save and review their preferred spots, creating a friendly community platform for uncovering popular destinations. </p>
+        </div>
+        <div class="locations">
+            <p>Your existing locations</p>
+            <div id="dashboard" class="dashboard"></div>
+        </div>
+        <div class="newlocations">
+            <!-- Button to trigger adding a new location -->
+            <button onclick="showImageInput()">Add a New Location</button>
+
+            <!-- Input field for selecting images (hidden initially) -->
+            <input type="file" accept="image/*" id="imageInput" style="display: none;">
+
+            <!-- Display the captured image -->
+            <img id="previewImage" src="#" alt="Preview Image" style="display: none; max-width: 100%;">
+
+            <!-- Rating section -->
+            <div class="stars" id="stars" style="display: none;">
+                <div class="card">
+                    <h1>Rating</h1>
+                    <br />
+                    <span onclick="rate(1)" class="star">★</span>
+                    <span onclick="rate(2)" class="star">★</span>
+                    <span onclick="rate(3)" class="star">★</span>
+                    <span onclick="rate(4)" class="star">★</span>
+                    <span onclick="rate(5)" class="star">★</span>
+                    <h3 id="output">Rating is: 0/5</h3>
+                </div>
+            </div>
+
+            <!-- Review input field -->
+            <div class="review" id="review" style="display: none;">
+                <h2>Write a review</h2>
+                <div class="mb-4 small">Please provide your feedback in the form below</div>
+                <form name="feedback_form" id="feedback_form" method="post">
+                    <div class="mb-4">
+                        <label class="form-label" for="feedback_comments">Comments:</label>
+                        <textarea class="form-control" required rows="6" name="comments" id="feedback_comments"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label" for="feedback_name">Name of the location:</label>
+                            <input type="text" required name="name" class="form-control" id="feedback_name"/>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-lg">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="reviewModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modalImage" src="#" alt="Location Image">
+            <div class="modal-details">
+                <h2 id="modalName"></h2>
+                <p><strong>Rating:</strong> <span id="modalRating"></span>/5</p>
+                <div id="modalComments" class="modal-description"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to show the input field for selecting images
+        function showImageInput() {
+            var input = document.getElementById('imageInput');
+            input.style.display = 'block'; // Display the input field
+            input.addEventListener('change', previewImage);
+        }
+
+        // Function to display the selected or captured image
+        function previewImage(event) {
+            var input = event.target;
+            var reader = new FileReader();
+            reader.onload = function() {
+                var img = document.getElementById('previewImage');
+                img.src = reader.result;
+                img.style.display = 'block'; // Display the image
+                document.getElementById('stars').style.display = 'block'; // Display the star rating
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+
+        // Function to handle rating
+        function rate(rating) {
+            var output = document.getElementById('output');
+            output.textContent = "Rating is: " + rating + "/5";
+            document.getElementById('review').style.display = 'block'; // Display the review input field
+            var ratingInput = document.createElement('input');
+            ratingInput.type = 'hidden';
+            ratingInput.name = 'rating';
+            ratingInput.value = rating;
+            document.getElementById('feedback_form').appendChild(ratingInput);
+        }
+
+        // Function to handle form submission
+        function submitReview(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Get the input values
+            var rating = document.querySelector('input[name="rating"]').value;
+            var comments = document.getElementById('feedback_comments').value;
+            var name = document.getElementById('feedback_name').value;
+            var image = document.getElementById('previewImage').src;
+
+            // Retrieve existing locations from local storage
+            var locations = JSON.parse(localStorage.getItem('locations')) || [];
+
+            // Add new location data
+            var newLocation = {
+                rating: rating,
+                comments: comments,
+                name: name,
+                image: image
+            };
+            locations.push(newLocation);
+
+            // Save updated locations to local storage
+            localStorage.setItem('locations', JSON.stringify(locations));
+
+            // Display the updated dashboard
+            displayDashboard();
+
+            // Clear and reset the form, hide the image preview and review section
+            document.getElementById('feedback_form').reset();
+            document.getElementById('previewImage').style.display = 'none';
+            document.getElementById('imageInput').style.display = 'none';
+            document.getElementById('stars').style.display = 'none';
+            document.getElementById('review').style.display = 'none';
+        }
+
+        // Function to display the full review in a modal
+        function showFullReview(index) {
+            var locations = JSON.parse(localStorage.getItem('locations')) || [];
+            var location = locations[index];
             
-            p
-            {
-                background-color:blue;
+            // Update modal content
+            document.getElementById('modalImage').src = location.image;
+            document.getElementById('modalImage').style.maxWidth = '100%'; // Set max width to 100%
+            document.getElementById('modalName').textContent = location.name;
+            document.getElementById('modalRating').textContent = location.rating;
+            document.getElementById('modalComments').textContent = location.comments;
+            
+            // Display the modal
+            document.getElementById('reviewModal').style.display = 'block';
+    }
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById('reviewModal').style.display = 'none';
+        }
+
+        // Function to display the dashboard
+        function displayDashboard() {
+            var locations = JSON.parse(localStorage.getItem('locations')) || [];
+            var dashboard = document.getElementById('dashboard');
+
+            if (locations.length === 0) {
+                dashboard.innerHTML = '<p>The dashboard is empty.</p>';
+            } else {
+                dashboard.innerHTML = '';
+                locations.forEach(function(location, index) {
+                    var locationDiv = document.createElement('div');
+                    locationDiv.className = 'location';
+                    locationDiv.innerHTML = `
+                        <img src="${location.image}" alt="Location Image" onclick="showFullReview(${index})">
+                        <div class="location-details">
+                            <p><strong>Location ${index + 1}</strong></p>
+                            <p><strong>Description:</strong> ${location.comments.substring(0, 50)}${location.comments.length > 50 ? '...' : ''}</p>
+                            <p><strong>Name:</strong> ${location.name}</p>
+                            <div class="location-rating"><strong>Rating:</strong> ${location.rating}/5</div>
+                        </div>
+                    `;
+                    dashboard.appendChild(locationDiv);
+                });
             }
-        </style>
-    </head>
-    <body>
-        <p>Paragraph 1</p>
-        <p>Paragraph 2</p>
-        <p>paragraph 3</p>
-    </body>
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initial display of the dashboard
+            displayDashboard();
+
+            // Add event listener to the form for submission
+            document.getElementById('feedback_form').addEventListener('submit', submitReview);
+        });
+    </script>
+</body>
 </html>

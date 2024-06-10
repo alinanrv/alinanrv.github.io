@@ -1,228 +1,310 @@
-.title
-{
-    background-color: #D1BB9E;
-    text-align: center;
-    color: black;
-    font-family: 'Roboto';
+/* Styles for the title element: sets background color, centers text, sets text color, and applies the 'Roboto' font */
+.title {
+  background-color: #D1BB9E;
+  text-align: center;
+  color: black;
+  font-family: 'Roboto';
 }
 
-.information
-{
-    background-color: #FFF2E1;
-    text-align: center;
-    color: black;
-}
-
-.stars
-{
-
-  .card {
-    max-width: 33rem;
-    background: #fff;
-    margin: 0 1rem;
-    padding: 1rem;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    border-radius: 0.5rem;
-  }
-   
-  .star {
-    font-size: 10vh;
-    cursor: pointer;
-  }
-}
-body {
-  font-family: 'Open Sans', Arial, sans-serif;
-  line-height: 1.6;
-  color: #333;
-  background-color: #cdcdcd;
-}
-
-.allprogram {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-}
-
-.title, .information, .locations {
-  margin-bottom: 40px;
-}
-
-.location {
-  border-bottom: 1px solid #ddd;
-  padding: 20px 0;
-}
-
-.dashboard {
-  border: 1px solid #ddd;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-
-.location {
-  border-bottom: 1px solid #ddd;
-  padding: 10px 0;
-  display: flex;
-  align-items: center;
-}
-
-.location img {
-  width: 100px;
-  height: 100px;
-  margin-right: 10px;
-  cursor: pointer;
-}
-
-.location-details {
-  flex: 1;
-}
-
-.location-details p {
-  margin: 5px 0;
-}
-
-.location-rating {
-  margin-top: 5px;
+/* Styles for the information element: sets background color, centers text, and sets text color */
+.information {
+  background-color: #FFF2E1;
+  text-align: center;
   color: black;
 }
 
-/* Modal styling */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
+/* Styles for the stars component:
+ - .card: sets maximum width, background color, margin, padding, box shadow, width, and border radius
+ - .star: sets font size and cursor type */
+.stars {
+.card {
+  max-width: 33rem;
+  background: #fff;
+  margin: 0 1rem;
+  padding: 1rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4);
+  border-radius: 0.5rem;
+}
+ 
+.star {
+  font-size: 10vh;
+  cursor: pointer;
+}
 }
 
+/* Styles for the body element: sets font family, line height, text color, and background color */
+body {
+font-family: 'Open Sans', Arial, sans-serif;
+line-height: 1.6;
+color: #333;
+background-color: #cdcdcd;
+}
+
+/* Styles for the allprogram element: sets maximum width, margin, padding, background color, box shadow, and border radius */
+.allprogram {
+max-width: 800px;
+margin: 20px auto;
+padding: 20px;
+background-color: #fff;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+border-radius: 8px;
+}
+
+/* Adds bottom margin to title, information, and locations elements */
+.title, .information, .locations {
+margin-bottom: 40px;
+}
+
+/* Styles for the location element: sets bottom border and vertical padding */
+.location {
+border-bottom: 1px solid #ddd;
+padding: 20px 0;
+}
+
+/* Styles for the dashboard element: sets border, padding, and bottom margin */
+.dashboard {
+border: 1px solid #ddd;
+padding: 10px;
+margin-bottom: 20px;
+}
+
+/* Additional styles for the location element: sets bottom border, vertical padding, display as flex, and aligns items to center */
+.location {
+border-bottom: 1px solid #ddd;
+padding: 10px 0;
+display: flex;
+align-items: center;
+}
+
+/* Styles for the image inside location: sets width, height, right margin, and cursor type */
+.location img {
+width: 100px;
+height: 100px;
+margin-right: 10px;
+cursor: pointer;
+}
+
+/* Styles for location-details element: allows it to grow to take up available space within flex container */
+.location-details {
+flex: 1;
+}
+
+/* Styles for paragraphs inside location-details: sets vertical margins */
+.location-details p {
+margin: 5px 0;
+}
+
+/* Styles for the location-rating element: sets top margin and text color */
+.location-rating {
+margin-top: 5px;
+color: black;
+}
+
+/* Styles for the modal element: initially hidden, fixed position, full screen width and height, scrollbar if needed, semi-transparent background */
+.modal {
+display: none;
+position: fixed;
+z-index: 1;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+overflow: auto;
+background-color: rgb(0,0,0);
+background-color: rgba(0,0,0,0.4);
+}
+
+/* Styles for the modal-content element: sets background color, centered with margin, padding, border, width, maximum width, word wrapping, and centered text */
 .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  max-width: 600px; /* Limit the maximum width */
-  word-wrap: break-word; /* Wrap long words */
-  text-align: center;
+background-color: #fefefe;
+margin: 15% auto;
+padding: 20px;
+border: 1px solid #888;
+width: 80%;
+max-width: 600px; /* Limit the maximum width */
+word-wrap: break-word; /* Wrap long words */
+text-align: center;
 }
 
+/* Centers text inside modal-details element */
 .modal-details {
-  text-align: center;
+text-align: center;
 }
 
+/* Limits height of modal-description and allows vertical scrolling if content overflows */
 .modal-description {
-  max-height: 200px; /* Limit the maximum height */
-  overflow-y: auto; /* Add vertical scrollbar if necessary */
+max-height: 200px; /* Limit the maximum height */
+overflow-y: auto; /* Add vertical scrollbar if necessary */
 }
 
+/* Styles for the close button: color, float, font size, and bold weight; changes color and cursor on hover and focus */
 .close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+color: #aaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
 }
-
 .close:hover,
 .close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+color: black;
+text-decoration: none;
+cursor: pointer;
 }
-/* Button styling */
+
+/* Styles for buttons: background color, no border, text color, padding, centered text, no underline, inline-block display, font size, margin, cursor, border radius, and smooth background color transition */
 button {
-  background-color: #ffbb54; /* Green background */
-  border: none;
-  color: rgb(0, 0, 0); /* White text */
-  padding: 15px 32px; /* Padding */
-  text-align: center; /* Centered text */
-  text-decoration: none; /* No underline */
-  display: inline-block; /* Get the elements to align properly */
-  font-size: 16px; /* Text size */
-  margin: 4px 2px; /* Some space around buttons */
-  cursor: pointer; /* Pointer cursor on hover */
-  border-radius: 12px; /* Rounded corners */
-  transition: background-color 0.3s ease; /* Smooth transition for background color */
+background-color: #ffbb54;
+border: none;
+color: rgb(0, 0, 0); 
+padding: 15px 32px; 
+text-align: center; 
+text-decoration: none; 
+display: inline-block; 
+font-size: 16px; 
+margin: 4px 2px; 
+cursor: pointer;
+border-radius: 12px; 
+transition: background-color 0.3s ease; 
 }
 
+/* Changes button background color on hover */
 button:hover {
-  background-color: #da9937; /* Darker green on hover */
+background-color: #da9937; 
 }
 
-
-
-
-/* optimization for phones and tablets */
 @media screen and (max-width: 768px) {
+  /* Style adjustments for the screen width is 768px or less */
   .title {
     background-color: #D1BB9E;
-    text-align: left;
+    text-align: center; 
     color: black;
   }
 
+  
   .information {
     background-color: #FFF2E1;
-    text-align: center;
+    text-align: center; 
     color: black;
   }
 
+ 
   .stars .card {
-    max-width: none;
-    margin: 0;
+    max-width: 100%; /* Ensure cards take full width */
+    margin: 0.5rem; /* Reduce margin for mobile */
   }
-
+   
+  
   .stars .star {
-    font-size: 5vh;
+    font-size: 5vh; /* Decrease font size for stars */
+    cursor: pointer;
+  }
+   
+  
+  body {
+    font-family: 'Roboto'; 
+    line-height: 1.6;
+    color: #333;
+    background-color: #cdcdcd;
   }
 
-  .stars .one {
-    color: rgb(255, 0, 0);
-  }
-
-  .stars .two {
-    color: rgb(255, 106, 0);
-  }
-
-  .stars .three {
-    color: rgb(251, 255, 120);
-  }
-
-  .stars .four {
-    color: rgb(255, 255, 0);
-  }
-
-  .stars .five {
-    color: rgb(24, 159, 14);
-  }
-
+ 
   .allprogram {
-    max-width: 100%;
+    max-width: 100%; /* Ensure it takes full width */
+    margin: 10px; /* Adjust margin for mobile */
+    padding: 10px; /* Adjust padding for mobile */
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Decrease shadow for mobile */
+    border-radius: 5px; /* Reduce border radius */
   }
 
+  .location {
+    padding: 10px 0;
+    display: block; /* Change from flex to block for better stacking on mobile */
+  }
+
+  
   .location img {
-    width: 80px;
-    height: 80px;
-    margin-right: 5px;
+    width: 80px; /* Reduce image size */
+    height: 80px; /* Reduce image size */
+    margin-right: 10px;
+    cursor: pointer;
   }
 
+  
+  .location-details {
+    margin-top: 10px;
+  }
+
+  
   .location-details p {
-    font-size: 14px;
+    margin: 5px 0;
   }
 
+ 
+  .location-rating {
+    margin-top: 5px;
+    color: black;
+  }
+
+  
+  .dashboard {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* Adjust margin for mobile */
+    padding: 10px; /* Adjust padding for mobile */
+    border: 1px solid #888;
+    width: 90%; /* Ensure modal takes 90% width */
+    max-width: 500px; /* Reduce max-width */
+    word-wrap: break-word;
+    text-align: center;
+  }
+
+  
+  .modal-details {
+    text-align: center;
+  }
+
+  
+  .modal-description {
+    max-height: 150px; /* Reduce max-height */
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+  }
+
+ 
   .close {
-    font-size: 24px;
+    color: #aaa;
+    float: right;
+    font-size: 24px; /* Reduce font size */
+    font-weight: bold;
   }
 
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  
   button {
-    font-size: 14px;
-    padding: 10px 24px;
-    border-radius: 8px;
+    font-size: 14px; /* Reduce font size */
+    padding: 10px 20px; /* Adjust padding for mobile */
+    border-radius: 8px; /* Maintain rounded corners */
+  }
+
+  
+  button:hover {
+    background-color: #da9937; /* Darken background color on hover */
+  }
+}
+
   }
 }
